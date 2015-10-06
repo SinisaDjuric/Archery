@@ -1,37 +1,55 @@
 # include "gui_sdl.h"
 
-    
+
 void set_and_load(void)
 {
-	SDL_Surface* target = NULL;
-	SDL_Surface* vertical = NULL;
-	SDL_Surface* horizontal = NULL;
-	SDL_Surface* point_vert = NULL;
-	SDL_Surface* point_horiz = NULL;
-	SDL_Surface* screen = NULL;
-	//SDL_Surface* dot = NULL;
-
 	SDL_Init( SDL_INIT_EVERYTHING );
+	target = NULL;
+	vertical = NULL;
+	horizontal = NULL;
+	point_vert = NULL;
+	point_horiz = NULL;
+	dot = NULL;
+    screen = NULL;
 	
-	screen = SDL_SetVideoMode( 1080, 1080, 32, SDL_SWSURFACE );
+	screen = SDL_SetVideoMode( SCREEN_HIGHT, SCREEN_WIDTH, BPP, SDL_SWSURFACE );
 	
-	target = SDL_LoadBMP( "target1.bmp" );
-	vertical = SDL_LoadBMP( "vertikala.bmp" );
-	horizontal = SDL_LoadBMP( "horizontala.bmp" );
-	point_vert = SDL_LoadBMP( "point_vertical.bmp" );
-	point_horiz = SDL_LoadBMP( "point.bmp" );
-    //dot = SDL_LoadBMP( "green_dot.bmp" );
+	target = SDL_LoadBMP( "resources/target1.bmp" );
+	vertical = SDL_LoadBMP( "resources/vertikala.bmp" );
+	horizontal = SDL_LoadBMP( "resources/horizontala.bmp" );
+	point_vert = SDL_LoadBMP( "resources/point_vertical.bmp" );
+	point_horiz = SDL_LoadBMP( "resources/point.bmp" );
+	dot = SDL_LoadBMP( "resources/green_dot.bmp" );
 }
 
 void show_start_images(SDL_Rect t,SDL_Rect h)
 {
+	h.x = 75;
+    h.y = 275;  
+	t.x = 95;
+	t.y = 25;
     
     SDL_BlitSurface( target, NULL, screen, &t);
 	SDL_BlitSurface( vertical, NULL, screen, NULL );
 	SDL_BlitSurface( horizontal, NULL, screen, &h );
 	
+    
     SDL_Flip( screen );
 	SDL_Delay( 4000 );
+}
+
+void show_hit(SDL_Rect d)
+{
+    SDL_BlitSurface( dot, NULL, screen, &d );
+    SDL_Flip( screen );
+	SDL_Delay( 4000 );
+}
+
+static void blituj(SDL_Surface* source, SDL_Surface* destination, SDL_Rect p)
+{
+	SDL_BlitSurface( source, NULL, destination, &p );
+	SDL_Flip( destination );
+	SDL_Delay( 10 );
 }
 
 int take_x(SDL_Rect p)
@@ -43,49 +61,31 @@ int take_x(SDL_Rect p)
 	{
 		if (direction == 1)
 		{
-			for(i=106;i<335;i++)
+			for(i=106;i<333;i++)
 			{
 				p.x=i;
-				SDL_BlitSurface( point_horiz, NULL, screen, &p );
-				SDL_Flip( screen );
-				SDL_Delay( 10 );
-				if (i == 334)
-					direction = -1;
-				if( SDL_PollEvent( &event ) )
-        		{
-          		  //If a key was pressed
-          		  if( event.type == SDL_KEYDOWN )
-          		  {
-					if (event.key.keysym.sym == SDLK_SPACE)
-					{
+				blituj(point_horiz, screen, p );			
+				if (i == 332)
+					direction = -1;					
+				if( SDL_PollEvent( &event ) &&  event.type == SDL_KEYDOWN && event.key.keysym.sym == SDLK_SPACE)
+				{
 						direction = 0;
 						return p.x;
-					}
-				  }
-				}	
+				}
 			}
 		}
 		else if (direction == -1)
 		{
-			for(i=334;i>105;i--)
+			for(i=332;i>105;i--)
 			{
 				p.x=i;
-				SDL_BlitSurface( point_horiz, NULL, screen, &p );
-				SDL_Flip( screen );
-				SDL_Delay( 10 );
+				blituj(point_horiz, screen, p );				
 				if (i == 106)
-					direction = 1;
-				if( SDL_PollEvent( &event ) )
-        		{
-          		  //If a key was pressed
-          		  if( event.type == SDL_KEYDOWN )
-          		  {
-					if (event.key.keysym.sym == SDLK_SPACE)
-					{
+					direction = 1;				
+				if( SDL_PollEvent( &event ) &&  event.type == SDL_KEYDOWN && event.key.keysym.sym == SDLK_SPACE)
+				{
 						direction = 0;
 						return p.x;
-					}
-				  }
 				}	
 			}
 		}
@@ -101,49 +101,31 @@ int take_y(SDL_Rect pv)
 	{
 		if (direction == 1)
 		{
-			for(i=29;i<228;i++)
+			for(i=29;i<226;i++)
 			{
 				pv.y=i;
-				SDL_BlitSurface( point_vert, NULL, screen, &pv );
-				SDL_Flip( screen );
-				SDL_Delay( 10 );
-				if (i == 227)
-					direction = -1;
-				if( SDL_PollEvent( &event ) )
-        		{
-          		  //If a key was pressed
-          		  if( event.type == SDL_KEYDOWN )
-          		  {
-						if (event.key.keysym.sym == SDLK_SPACE)
-						{
-							direction = 0;
-							return pv.y;
-						}
-				  }
+				blituj( point_vert, screen, pv);
+				if (i == 225)
+					direction = -1;		
+				if( SDL_PollEvent( &event ) &&  event.type == SDL_KEYDOWN && event.key.keysym.sym == SDLK_SPACE)
+				{
+						direction = 0;
+						return pv.y;
 				}
 			}
 		}
 		else if (direction == -1)
 		{
-			for(i=227;i>28;i--)
+			for(i=225;i>28;i--)
 			{
 				pv.y=i;
-				SDL_BlitSurface( point_vert, NULL, screen, &pv );
-				SDL_Flip( screen );
-				SDL_Delay( 10 );
+				blituj( point_vert, screen, pv);
 				if (i == 29)
 					direction = 1;
-				if( SDL_PollEvent( &event ) )
-        		{
-          		  //If a key was pressed
-          		  if( event.type == SDL_KEYDOWN )
-          		  {
-						if (event.key.keysym.sym == SDLK_SPACE)
-						{
-							direction = 0;
-							return pv.y;
-						}
-				  }
+				if( SDL_PollEvent( &event ) &&  event.type == SDL_KEYDOWN && event.key.keysym.sym == SDLK_SPACE)
+				{
+						direction = 0;
+						return pv.y;
 				}
 			}
 		}
@@ -152,15 +134,15 @@ int take_y(SDL_Rect pv)
 	
 void sdl_quit(void)
 {
-	//Pause
     SDL_Delay( 3000 );
-    //Free the loaded image
+    
     SDL_FreeSurface( target );
 	SDL_FreeSurface( vertical );
 	SDL_FreeSurface( horizontal );
 	SDL_FreeSurface( point_vert );
 	SDL_FreeSurface( point_horiz );
-    //Quit SDL
+	SDL_FreeSurface( dot );
+    
     SDL_Quit();
 }
 

@@ -14,12 +14,12 @@ void set_and_load(void)
 	
 	screen = SDL_SetVideoMode( SCREEN_HIGHT, SCREEN_WIDTH, BPP, SDL_SWSURFACE );
 	
-	target = SDL_LoadBMP( "target1.bmp" );
-	vertical = SDL_LoadBMP( "vertikala.bmp" );
-	horizontal = SDL_LoadBMP( "horizontala.bmp" );
-	point_vert = SDL_LoadBMP( "point_vertical.bmp" );
-	point_horiz = SDL_LoadBMP( "point.bmp" );
-	dot = SDL_LoadBMP( "green_dot.bmp" );
+	target = SDL_LoadBMP( "../resources/target1.bmp" );
+	vertical = SDL_LoadBMP( "../resources/vertikala.bmp" );
+	horizontal = SDL_LoadBMP( "../resources/horizontala.bmp" );
+	point_vert = SDL_LoadBMP( "../resources/point_vertical.bmp" );
+	point_horiz = SDL_LoadBMP( "../resources/point.bmp" );
+	dot = SDL_LoadBMP( "../resources/green_dot.bmp" );
 }
 
 void show_start_images(SDL_Rect t,SDL_Rect h)
