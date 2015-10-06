@@ -1,0 +1,16 @@
+all:  player main build
+
+.PHONY: player main build
+
+player:
+	$(MAKE) -C player all
+
+main:
+	$(MAKE) -C main all
+
+build:
+	$(MAKE) -C build all
+score:
+	$(MAKE) -C score all
+
+

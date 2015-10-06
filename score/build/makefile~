@@ -1,0 +1,2 @@
+ all:
+	gcc -o ../runall unity.o unity_fixture.o ../../build/score.o runall.o score_test.o

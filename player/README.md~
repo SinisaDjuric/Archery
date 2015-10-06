@@ -1,0 +1,9 @@
+Player:
+
+Tests:
+- Create one player
+- Put enmpty name
+- Put name of normal size
+- Put to large name
+- Delete one player
+- Delete all players
