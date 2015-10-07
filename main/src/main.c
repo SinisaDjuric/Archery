@@ -11,8 +11,9 @@ int main( int argc, char* args[] )
     showStartImages(t, h);
     d.x = takeX(p);
     d.y = takeY(pv);
+	//showAnimation();
 	showHit(d);
-	//PLAYER* pl;
+	PLAYER* pl;
 	//assignPlayerName(pl, "Sinisa");
 	//assignPlayerScore(pl, totalScore(printScore(d.x, d.y)));
 	int skor = totalScore(printScore(d.x, d.y));

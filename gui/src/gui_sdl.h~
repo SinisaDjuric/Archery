@@ -14,13 +14,20 @@
 	SDL_Surface* point_horiz;
 	SDL_Surface* dot;
     SDL_Surface* screen;
+	SDL_Surface* screen1;
+	SDL_Surface* arrow;
+	//SDL_Surface* hit;
+	//SDL_Surface* tabele;
+	SDL_Surface* white_target;
 
-void set_and_load(void);
+
+void setAndLoad(void);
+void showAnimation(void);
 //void set_positions(SDL_Rect t,SDL_Rect h);
-void show_start_images(SDL_Rect t,SDL_Rect h);
-void show_hit(SDL_Rect d);
-int take_x(SDL_Rect p);
-int take_y(SDL_Rect pv);
-void sdl_quit(void);
+void showStartImages(SDL_Rect t,SDL_Rect h);
+void showHit(SDL_Rect d);
+int takeX(SDL_Rect p);
+int takeY(SDL_Rect pv);
+void sdlQuit(void);
 
 # endif

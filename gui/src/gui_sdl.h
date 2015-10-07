@@ -14,8 +14,15 @@
 	SDL_Surface* point_horiz;
 	SDL_Surface* dot;
     SDL_Surface* screen;
+	SDL_Surface* screen1;
+	SDL_Surface* arrow;
+	SDL_Surface* hit;
+	SDL_Surface* tabele;
+	SDL_Surface* white_target;
+
 
 void setAndLoad(void);
+void showAnimation(void);
 //void set_positions(SDL_Rect t,SDL_Rect h);
 void showStartImages(SDL_Rect t,SDL_Rect h);
 void showHit(SDL_Rect d);

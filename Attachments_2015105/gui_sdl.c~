@@ -1,7 +1,7 @@
 # include "gui_sdl.h"
 
 
-void set_and_load(void)
+void setAndLoad(void)
 {
 	SDL_Init( SDL_INIT_EVERYTHING );
 	target = NULL;
@@ -11,18 +11,53 @@ void set_and_load(void)
 	point_horiz = NULL;
 	dot = NULL;
     screen = NULL;
+	screen1 = NULL;
+	arrow = NULL;
+	hit = NULL;
+	table = NULL;
 	
 	screen = SDL_SetVideoMode( SCREEN_HIGHT, SCREEN_WIDTH, BPP, SDL_SWSURFACE );
-	
+	screen1 = SDL_SetVideoMode( SCREEN_HIGHT, SCREEN_WIDTH, BPP, SDL_SWSURFACE );
+	SDL_FillRect(screen1, NULL, 0xFFFFFF);
+
 	target = SDL_LoadBMP( "resources/target1.bmp" );
 	vertical = SDL_LoadBMP( "resources/vertikala.bmp" );
 	horizontal = SDL_LoadBMP( "resources/horizontala.bmp" );
 	point_vert = SDL_LoadBMP( "resources/point_vertical.bmp" );
 	point_horiz = SDL_LoadBMP( "resources/point.bmp" );
 	dot = SDL_LoadBMP( "resources/green_dot.bmp" );
+	arrow = SDL_LoadBMP( "resources/arrow.bmp" );
+	hit = SDL_LoadBMP( "resources/hit.bmp" );
+	table = SDL_LoadBMP( "resources/tabela.bmp" );
 }
 
-void show_start_images(SDL_Rect t,SDL_Rect h)
+void showAnimation(void)
+{
+	SDL_Rect p[10] ={0, 0};
+	
+	SDL_Surface* arrow[10];
+	arrow[0] = SDL_LoadBMP( "resources/1.bmp" );
+	arrow[1] = SDL_LoadBMP( "resources/2.bmp" );
+	arrow[2] = SDL_LoadBMP( "resources/3.bmp" );
+	arrow[3] = SDL_LoadBMP( "resources/4.bmp" );
+	arrow[4] = SDL_LoadBMP( "resources/5.bmp" );
+	arrow[5] = SDL_LoadBMP( "resources/6.bmp" );
+	arrow[6] = SDL_LoadBMP( "resources/7.bmp" );
+	arrow[7] = SDL_LoadBMP( "resources/8.bmp" );
+	arrow[8] = SDL_LoadBMP( "resources/9.bmp" );
+	arrow[9] = SDL_LoadBMP( "resources/10.bmp" );
+	int i;
+	for(i=1;i<11;i++)
+	{
+		p[i].x = 5*i;
+		p[i].y = 5*i;
+		SDL_BlitSurface( arrow[i], NULL, screen1, &p[i] );
+	
+		SDL_Flip( screen1 );
+		SDL_Delay( 500 );
+	}
+}
+void showStartImages(SDL_Rect t,SDL_Rect h)
 {
 	h.x = 75;
     h.y = 275;  
@@ -38,8 +73,10 @@ void show_start_images(SDL_Rect t,SDL_Rect h)
 	SDL_Delay( 4000 );
 }
 
-void show_hit(SDL_Rect d)
+void showHit(SDL_Rect d)
 {
+	d.x += 4;
+	d.y += 4;
     SDL_BlitSurface( dot, NULL, screen, &d );
     SDL_Flip( screen );
 	SDL_Delay( 4000 );
@@ -52,7 +89,7 @@ static void blituj(SDL_Surface* source, SDL_Surface* destination, SDL_Rect p)
 	SDL_Delay( 10 );
 }
 
-int take_x(SDL_Rect p)
+int takeX(SDL_Rect p)
 {
 	SDL_Event event;
 	int i, direction = 1;
@@ -92,7 +129,7 @@ int take_x(SDL_Rect p)
 	}
 }
 
-int take_y(SDL_Rect pv)
+int takeY(SDL_Rect pv)
 {
 	SDL_Event event;
 	int i, direction = 1;
@@ -132,7 +169,7 @@ int take_y(SDL_Rect pv)
 	}
 }
 	
-void sdl_quit(void)
+void sdlQuit(void)
 {
     SDL_Delay( 3000 );
     
