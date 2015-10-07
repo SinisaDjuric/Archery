@@ -1,9 +1,9 @@
 CC=gcc
 
-all: gui
+all: gui 
+.PHONY: gui 
 
-.PHONY: gui
-
-main:
+gui:
 	$(CC) -c src/gui_sdl.c -o ../build/gui_sdl.o
+
 

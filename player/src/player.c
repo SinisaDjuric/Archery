@@ -35,6 +35,13 @@ void assignPlayerQuality(PLAYER* player, uint8_t quality)
 	}
 }
 
+void assignPlayerScore(PLAYER* player, uint8_t score)
+{
+	
+	player -> score = score;
+	
+}
+
 void increaseQuality(PLAYER* player)
 {
     player->quality = player->quality >= QUALITY_MAX ? QUALITY_MAX : player->quality + 1;

@@ -19,8 +19,8 @@
 
 int tot_score;
 
-int print_score(int x, int y);
-int total_score(int score);
+int printScore(int x, int y);
+int totalScore(int score);
 
 
 

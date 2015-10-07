@@ -17,7 +17,7 @@ static double radius(int x, int y)
 	return sqrt(kvadrat(delta(x,CENTAR_X)) + kvadrat(delta(y, CENTAR_Y)));
 }
 
-int print_score(int x, int y)
+int printScore(int x, int y)
 {
 	if(radius(x, y) < RADIUS_FIVE)
 		return FIVE;
@@ -33,7 +33,7 @@ int print_score(int x, int y)
 		return ZERO;
 }
 
-int total_score(int score)
+int totalScore(int score)
 {
 	tot_score += score;
 	return tot_score;

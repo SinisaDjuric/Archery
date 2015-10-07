@@ -1,16 +1,23 @@
 # include "../../gui/src/gui_sdl.h"
+# include "../../player/src/player.h"
+# include "../../score/src/score.h"
 
 
 int main( int argc, char* args[] )
 {
 
-    set_and_load();
+    setAndLoad();
     SDL_Rect h, t, p, pv, d;
-    show_start_images(t, h);
-    d.x = take_x(p) - 4;
-    d.y = take_y(pv) + 4;
-	show_hit(d);
-    sdl_quit();
+    showStartImages(t, h);
+    d.x = takeX(p);
+    d.y = takeY(pv);
+	showHit(d);
+	//PLAYER* pl;
+	//assignPlayerName(pl, "Sinisa");
+	//assignPlayerScore(pl, totalScore(printScore(d.x, d.y)));
+	//int skor = totalScore(printScore(d.x, d.y));
+	//printf("%d \n", skor);
+    sdlQuit();
 
     return 0; 
 }

@@ -17,11 +17,6 @@ static double radius(int x, int y)
 	return sqrt(kvadrat(delta(x,CENTAR_X)) + kvadrat(delta(y, CENTAR_Y)));
 }
 
-static void set_total()
-{
-	tot_score = 0;
-}
-
 int print_score(int x, int y)
 {
 	if(radius(x, y) < RADIUS_FIVE)
@@ -40,7 +35,6 @@ int print_score(int x, int y)
 
 int total_score(int score)
 {
-	set_total();
 	tot_score += score;
 	return tot_score;
 }

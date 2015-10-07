@@ -1,9 +1,15 @@
-all:  player main build score
+all:  player score gui main build
 
-.PHONY: player main build score
+.PHONY: player score gui main build
 
 player:
 	$(MAKE) -C player all
+
+score:
+	$(MAKE) -C score all
+
+gui:
+	$(MAKE) -C gui all
 
 main:
 	$(MAKE) -C main all
@@ -11,7 +17,6 @@ main:
 build:
 	$(MAKE) -C build all
 
-score:
-	$(MAKE) -C score all
+
 
 

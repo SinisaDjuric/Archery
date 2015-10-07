@@ -1,7 +1,7 @@
 # include "gui_sdl.h"
 
 
-void setAndLoad(void)
+void set_and_load(void)
 {
 	SDL_Init( SDL_INIT_EVERYTHING );
 	target = NULL;
@@ -22,7 +22,7 @@ void setAndLoad(void)
 	dot = SDL_LoadBMP( "resources/green_dot.bmp" );
 }
 
-void showStartImages(SDL_Rect t,SDL_Rect h)
+void show_start_images(SDL_Rect t,SDL_Rect h)
 {
 	h.x = 75;
     h.y = 275;  
@@ -38,7 +38,7 @@ void showStartImages(SDL_Rect t,SDL_Rect h)
 	SDL_Delay( 4000 );
 }
 
-void showHit(SDL_Rect d)
+void show_hit(SDL_Rect d)
 {
 	d.x += 4;
 	d.y += 4;
@@ -54,7 +54,7 @@ static void blituj(SDL_Surface* source, SDL_Surface* destination, SDL_Rect p)
 	SDL_Delay( 10 );
 }
 
-int takeX(SDL_Rect p)
+int take_x(SDL_Rect p)
 {
 	SDL_Event event;
 	int i, direction = 1;
@@ -94,7 +94,7 @@ int takeX(SDL_Rect p)
 	}
 }
 
-int takeY(SDL_Rect pv)
+int take_y(SDL_Rect pv)
 {
 	SDL_Event event;
 	int i, direction = 1;
@@ -134,7 +134,7 @@ int takeY(SDL_Rect pv)
 	}
 }
 	
-void sdlQuit(void)
+void sdl_quit(void)
 {
     SDL_Delay( 3000 );
     

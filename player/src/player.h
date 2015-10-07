@@ -30,6 +30,7 @@
   {
     char name[NAME_LENGTH_MAX];	///<	Name of player in game. Used as player ID in game. See #NAME_LENGTH_MAX
     uint8_t quality;		///<	Quality of player. Higher number means better player. See #QUALITY_MIN and #QUALITY_MAX
+	uint8_t score;			///<	Player's score. See SCORE.H
   } PLAYER;
 
   /**
@@ -60,7 +61,14 @@
   */
   void assignPlayerQuality(PLAYER* player, uint8_t quality);
 
-	
+	/**
+	  * @brief	This method assignes \a score to the \a player.
+			Must be called after playerCreate(), not before.
+	  * @param	PLAYER*	Pointer to structure \ref player whom we want to assign \a quality.
+	  * @param	uint8_t	The score to assign to the \a player.
+	  * @retval	void	
+	  */
+void assignPlayerScore(PLAYER* player, uint8_t score);
 	/**
 	* @brief This method increases quality of \a player by 1.
 	* If quality of player is #QUALITY_MAX it won't be increased.

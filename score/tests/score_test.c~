@@ -12,7 +12,7 @@ TEST_GROUP_RUNNER(ScoreTest)
 	RUN_TEST_CASE (ScoreTest, IsTwo);
 	RUN_TEST_CASE (ScoreTest, IsOne);
 	RUN_TEST_CASE (ScoreTest, IsZero);
-	//RUN_TEST_CASE (ScoreTest, Is14);
+	RUN_TEST_CASE (ScoreTest, Is14);
 	RUN_TEST_CASE (ScoreTest, Is29);
 }
 

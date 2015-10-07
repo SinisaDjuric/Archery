@@ -1,9 +1,11 @@
 CC=gcc
 
-all: main
+all: gui build
 
-.PHONY: main
+.PHONY: gui build
 
-main:
-	$(CC) -c src/main.c -o ../build/main.o
+gui:
+	$(CC) -c src/gui_sdl.c -o ../build/gui_sdl.o
 
+build:
+	$(MAKE) -C build all

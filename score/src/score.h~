@@ -17,7 +17,7 @@
 # define ONE 1
 # define ZERO 0
 
-static int tot_score;
+int tot_score;
 
 int print_score(int x, int y);
 int total_score(int score);

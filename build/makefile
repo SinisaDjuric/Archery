@@ -1,3 +1,4 @@
 all:
-	gcc -o ../the_game main.o player.o gui_sdl.o score.o 
+	gcc -o ../the_game main.o player.o gui_sdl.o score.o  -lSDL -lm
+
 
