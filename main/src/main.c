@@ -15,8 +15,13 @@ int main( int argc, char* args[] )
 	//PLAYER* pl;
 	//assignPlayerName(pl, "Sinisa");
 	//assignPlayerScore(pl, totalScore(printScore(d.x, d.y)));
-	//int skor = totalScore(printScore(d.x, d.y));
-	//printf("%d \n", skor);
+	int skor = totalScore(printScore(d.x, d.y));
+	showStartImages(t, h);
+	d.x = takeX(p);
+    d.y = takeY(pv);
+	showHit(d);
+	skor = totalScore(printScore(d.x, d.y));
+	printf("%d \n", skor);
     sdlQuit();
 
     return 0; 
