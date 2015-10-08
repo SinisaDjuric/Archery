@@ -3,8 +3,9 @@
 
 
 # include "SDL/SDL.h"
+# include "SDL/SDL_ttf.h"
+# define SCREEN_WIDTH 1080
 # define SCREEN_HIGHT 640
-# define SCREEN_WIDTH 480
 # define BPP 32
 //The images
     SDL_Surface* target;
@@ -23,6 +24,7 @@
 
 void setAndLoad(void);
 void showAnimation(void);
+void printTable(char ime[], int x, int y);
 //void set_positions(SDL_Rect t,SDL_Rect h);
 void showStartImages(SDL_Rect t,SDL_Rect h);
 void showHit(SDL_Rect d);

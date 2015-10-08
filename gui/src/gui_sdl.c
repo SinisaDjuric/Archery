@@ -17,7 +17,7 @@ void setAndLoad(void)
 	tabele = NULL;
 	white_target = NULL;
 	
-	screen = SDL_SetVideoMode( SCREEN_HIGHT, SCREEN_WIDTH, BPP, SDL_SWSURFACE );
+	screen = SDL_SetVideoMode( SCREEN_WIDTH, SCREEN_HIGHT, BPP, SDL_SWSURFACE );
 	//screen1 = SDL_SetVideoMode( 1080, 640, BPP, SDL_SWSURFACE );
 	//SDL_FillRect(screen1, NULL, 0xFFFFFF);
 
@@ -32,12 +32,12 @@ void setAndLoad(void)
 	tabele = SDL_LoadBMP( "resources/tabela.bmp" );
 	white_target = SDL_LoadBMP( "resources/meta.bmp" );
 }
-
+/*
 void showAnimation(void)
 {
 	SDL_Rect p[10] ={0, 0};
 	SDL_Rect wt;
-	wt.x = 700;
+	wt.x = 650;
 	wt.y = 50;
 	
 	SDL_Surface* arrow[10];
@@ -79,9 +79,42 @@ void showAnimation(void)
 	{
 	SDL_FreeSurface( arrow[i-1] );
 	}
-	SDL_FreeSurface( screen1 );
+	//SDL_FreeSurface( screen1 );
+	
+}*/
+
+void printTable(char ime[], int x, int y)
+{
+	SDL_Surface* message = NULL;
+	
+	TTF_Font *font = NULL; 
+	
+	SDL_Color textColor = { 255, 255, 255 };
+	TTF_Init();
+	 
+	font = TTF_OpenFont( "resources/open-sans/OpenSans-Light.ttf", 28 );
+	 
+	message = TTF_RenderText_Solid( font, "Player", textColor );
+
+	SDL_Rect offset; 
+	offset.x = x; 
+	offset.y = y; 
+    SDL_Rect t;
+    t.x = 400;
+    t.y = 50;
+	SDL_BlitSurface( tabele, NULL, screen, &t );
+	SDL_BlitSurface( message, NULL, screen, &offset );
+	SDL_Flip( screen );
+	SDL_Delay( 5000 );
+
+	SDL_FreeSurface( message ); 
+	
+	TTF_CloseFont( font ); 
+	
+	TTF_Quit(); 
 	
 }
+
 void showStartImages(SDL_Rect t,SDL_Rect h)
 {
 	h.x = 75;
