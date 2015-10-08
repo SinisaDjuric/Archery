@@ -18,8 +18,7 @@ void setAndLoad(void)
 	white_target = NULL;
 	
 	screen = SDL_SetVideoMode( SCREEN_WIDTH, SCREEN_HIGHT, BPP, SDL_SWSURFACE );
-	//screen1 = SDL_SetVideoMode( 1080, 640, BPP, SDL_SWSURFACE );
-	//SDL_FillRect(screen1, NULL, 0xFFFFFF);
+	screen1 = SDL_SetVideoMode( 1080, 640, BPP, SDL_SWSURFACE );
 
 	target = SDL_LoadBMP( "resources/target1.bmp" );
 	vertical = SDL_LoadBMP( "resources/vertikala.bmp" );
@@ -30,9 +29,9 @@ void setAndLoad(void)
 	arrow = SDL_LoadBMP( "resources/arrow.bmp" );
 	hit = SDL_LoadBMP( "resources/hit.bmp" );
 	tabele = SDL_LoadBMP( "resources/tabela.bmp" );
-	white_target = SDL_LoadBMP( "resources/meta.bmp" );
+	white_target = SDL_LoadBMP( "resources/Lg80cm.bmp" );
 }
-/*
+
 void showAnimation(void)
 {
 	SDL_Rect p[10] ={0, 0};
@@ -61,53 +60,88 @@ void showAnimation(void)
 		p[i].x = 50*i;
 		p[i].y = 3*i;
 		SDL_FillRect(screen1, NULL, 0xFFFFFF);
-		SDL_BlitSurface( white_target, NULL, screen1, &wt );
+		//SDL_BlitSurface( white_target, NULL, screen1, &wt );
 		SDL_BlitSurface( arrow[i-1], NULL, screen1, &p[i] );
 
 		SDL_Flip( screen1 );
 		SDL_Delay( 500 );
 	}
-	SDL_BlitSurface( hit, NULL, screen1, NULL );
+	SDL_FillRect(screen1, NULL, 0xFFFFFF);
+	SDL_BlitSurface( hit, NULL, screen1, &wt );
 
 	SDL_Flip( screen1 );
 	SDL_Delay( 2000 );
 
 
 	SDL_FreeSurface( hit );
-	SDL_FreeSurface( white_target );
+	//SDL_FreeSurface( white_target );
 	for(i=1;i<11;i++)
 	{
 	SDL_FreeSurface( arrow[i-1] );
 	}
 	//SDL_FreeSurface( screen1 );
 	
-}*/
+}
 
-void printTable(char ime[], int x, int y)
+void printTable(char ime[], int x, char point[], char score[])
 {
-	SDL_Surface* message = NULL;
-	
+	SDL_Surface* message1 = NULL;
+	SDL_Surface* message2 = NULL;
+	SDL_Surface* message3 = NULL;
+	SDL_Surface* player = NULL;
+	SDL_Surface* points = NULL;
+	SDL_Surface* total = NULL;
 	TTF_Font *font = NULL; 
 	
-	SDL_Color textColor = { 255, 255, 255 };
+	SDL_Color textColor = { 0, 0, 0 };
 	TTF_Init();
 	 
 	font = TTF_OpenFont( "resources/open-sans/OpenSans-Light.ttf", 28 );
 	 
-	message = TTF_RenderText_Solid( font, "Player", textColor );
+	message1 = TTF_RenderText_Solid( font, "Player", textColor );
+	message2 = TTF_RenderText_Solid( font, "Points", textColor );
+	message3 = TTF_RenderText_Solid( font, "Total", textColor );
+	player = TTF_RenderText_Solid( font, ime, textColor );
+	points = TTF_RenderText_Solid( font, point, textColor );
+	total = TTF_RenderText_Solid( font, score, textColor );
 
-	SDL_Rect offset; 
-	offset.x = x; 
-	offset.y = y; 
+	SDL_Rect pl;
+	pl.x = 420; 
+	pl.y = 150 + (x-1) * 80; 
+	SDL_Rect p;
+	p.x = 680; 
+	p.y = 150 + (x-1) * 80; 
+	SDL_Rect to;
+	to.x = 800; 
+	to.y = 150 + (x-1) * 80; 
     SDL_Rect t;
     t.x = 400;
     t.y = 50;
+	SDL_Rect m1;
+    m1.x = 420;
+    m1.y = 70;
+	SDL_Rect m2;
+    m2.x = 650;
+    m2.y = 70;	
+	SDL_Rect m3;
+    m3.x = 780;
+   	m3.y = 70;
 	SDL_BlitSurface( tabele, NULL, screen, &t );
-	SDL_BlitSurface( message, NULL, screen, &offset );
+	SDL_BlitSurface( message1, NULL, screen, &m1 );
+	SDL_BlitSurface( message2, NULL, screen, &m2 );
+	SDL_BlitSurface( message3, NULL, screen, &m3 );
+	SDL_BlitSurface( player, NULL, screen, &pl );
+	SDL_BlitSurface( points, NULL, screen, &p );
+	SDL_BlitSurface( total, NULL, screen, &to );
 	SDL_Flip( screen );
 	SDL_Delay( 5000 );
 
-	SDL_FreeSurface( message ); 
+	SDL_FreeSurface( message1 ); 
+	SDL_FreeSurface( message2 );
+	SDL_FreeSurface( message3 );
+	SDL_FreeSurface( player ); 
+	SDL_FreeSurface( points );
+	SDL_FreeSurface( total );
 	
 	TTF_CloseFont( font ); 
 	
@@ -121,7 +155,7 @@ void showStartImages(SDL_Rect t,SDL_Rect h)
     h.y = 275;  
 	t.x = 95;
 	t.y = 25;
-    
+    SDL_FillRect(screen, NULL, 0x000000);
     SDL_BlitSurface( target, NULL, screen, &t);
 	SDL_BlitSurface( vertical, NULL, screen, NULL );
 	SDL_BlitSurface( horizontal, NULL, screen, &h );
@@ -237,6 +271,10 @@ void sdlQuit(void)
 	SDL_FreeSurface( point_vert );
 	SDL_FreeSurface( point_horiz );
 	SDL_FreeSurface( dot );
+	SDL_FreeSurface( arrow );
+	SDL_FreeSurface( hit );
+	SDL_FreeSurface( tabele );
+	SDL_FreeSurface( white_target );
     
     SDL_Quit();
 }

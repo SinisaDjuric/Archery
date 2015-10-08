@@ -1,0 +1,33 @@
+# include <stdio.h>
+
+char* intToString(int num, char points[])
+{
+	char sym[2];
+	int i = 0, j = 0;
+	while(num)
+	{
+		sym[i] = (num % 10) + '0';
+		i++;
+		num /=10;
+	}
+	while(i>0)
+	{
+		points[j] = sym[i-1];
+		j++;
+		i--;
+	}
+	points[j] =  '\0';
+	return points;
+}
+
+int main( int argc, char* args[] )
+{
+	char p[3], t[3];
+	/*intToString(4,p);
+	intToString(17,t);
+	intToString(17,p);
+	intToString(4,t);*/
+	printf("%s\t%s\n", intToString(4,p), intToString(17,t));
+	printf("%s\t%s\n", intToString(17,p), intToString(4,p));
+    return 0; 
+}

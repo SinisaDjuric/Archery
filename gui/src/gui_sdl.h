@@ -4,6 +4,7 @@
 
 # include "SDL/SDL.h"
 # include "SDL/SDL_ttf.h"
+
 # define SCREEN_WIDTH 1080
 # define SCREEN_HIGHT 640
 # define BPP 32
@@ -24,7 +25,7 @@
 
 void setAndLoad(void);
 void showAnimation(void);
-void printTable(char ime[], int x, int y);
+void printTable(char ime[], int x, char point[], char score[]);
 //void set_positions(SDL_Rect t,SDL_Rect h);
 void showStartImages(SDL_Rect t,SDL_Rect h);
 void showHit(SDL_Rect d);
