@@ -1,5 +1,4 @@
 # include "score.h"
-//# include <math.h>
 
 
 static int delta(int a, int b)
