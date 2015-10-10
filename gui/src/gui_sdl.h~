@@ -25,7 +25,7 @@
 
 void setAndLoad(void);
 void showAnimation(void);
-void printTable(char ime[], int x, int y, char point[], char score[]);
+void printTable(char ime[], int x, char point[], char score[]);
 //void set_positions(SDL_Rect t,SDL_Rect h);
 void showStartImages(SDL_Rect t,SDL_Rect h);
 void showHit(SDL_Rect d);
