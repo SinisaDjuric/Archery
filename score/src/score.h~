@@ -17,10 +17,10 @@
 # define ONE 1
 # define ZERO 0
 
-int tot_score;
+//int tot_score;
 
-int print_score(int x, int y);
-int total_score(int score);
+int printScore(int x, int y);
+int totalScore(int score, int total;
 
 
 

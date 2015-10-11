@@ -18,7 +18,7 @@ TEST_GROUP_RUNNER(ScoreTest)
 
 TEST_SETUP(ScoreTest)
 {	 
-	tot_score = 0;
+	
 }
 
 TEST_TEAR_DOWN(ScoreTest)
@@ -58,9 +58,10 @@ TEST(ScoreTest, IsZero)
 TEST(ScoreTest, Is14)
 {
 	int tot = 0;
-	tot = totalScore(printScore(224, 134));
-	tot = totalScore(printScore(205, 115));
-	tot = totalScore(printScore(224, 134));
+	int t = 0;
+	tot = totalScore(printScore(224, 134),t);
+	tot = totalScore(printScore(205, 115),t);
+	tot = totalScore(printScore(224, 134),t);
 	TEST_ASSERT_EQUAL_INT (14, tot);
 }
 
@@ -68,16 +69,17 @@ TEST(ScoreTest, Is29)
 {
 	
 	int tot = 0;
-	tot = totalScore(printScore(224, 134));
-	tot = totalScore(printScore(205, 115));
-	tot = totalScore(printScore(183, 93));
-	tot = totalScore(printScore(174, 84));
-	tot = totalScore(printScore(163, 73));
-	tot = totalScore(printScore(120, 30));
-	tot = totalScore(printScore(205, 115));
-	tot = totalScore(printScore(224, 134));
-	tot = totalScore(printScore(183, 93));
-	tot = totalScore(printScore(174, 84));
+	int t = 0;
+	tot = totalScore(printScore(224, 134),t);
+	tot = totalScore(printScore(205, 115),t);
+	tot = totalScore(printScore(183, 93),t);
+	tot = totalScore(printScore(174, 84),t);
+	tot = totalScore(printScore(163, 73),t);
+	tot = totalScore(printScore(120, 30),t);
+	tot = totalScore(printScore(205, 115),t);
+	tot = totalScore(printScore(224, 134),t);
+	tot = totalScore(printScore(183, 93),t);
+	tot = totalScore(printScore(174, 84),t);
 
 	TEST_ASSERT_EQUAL_INT (29, tot);
 }

@@ -32,8 +32,8 @@ int printScore(int x, int y)
 		return ZERO;
 }
 
-int totalScore(int score)
+int totalScore(int score, int total)
 {
-	tot_score += score;
-	return tot_score;
+	total += score;
+	return total;
 }
