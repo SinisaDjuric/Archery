@@ -1,5 +1,5 @@
 # include "../../gui/src/gui_sdl.h"
-# include "../../player/src/player.h"
+//# include "../../player/src/player.h"
 # include "../../score/src/score.h"
 
 void intToString(int num, char points[])
@@ -27,7 +27,7 @@ void intToString(int num, char points[])
 	    }
 	    points[j] =  '\0';
     }
-	//return points;
+	
 }
 
 SDL_Rect shoot(SDL_Rect ta, SDL_Rect h, SDL_Rect po, SDL_Rect pv, SDL_Rect d )
@@ -50,36 +50,54 @@ void result(PLAYER* pl, int skor, char p1[3],char t1[3], SDL_Rect d )
 int main( int argc, char* args[] )
 {
     setAndLoad();
-    SDL_Rect h, ta, po, pv, da;
-    char p1[3], t1[3], p2[3], t2[3];
-    PLAYER* pl = playerCreate();
-    PLAYER* pl1 = playerCreate();
-	assignPlayerName(pl, "Sinisa");
-    assignPlayerName(pl1, "Seka");
+    SDL_Rect h;
+	SDL_Rect ta;
+	SDL_Rect po;
+	SDL_Rect pv;
+	SDL_Rect da;
 
-    assignPlayerScore(pl, 0);
-    assignPlayerScore(pl1, 0);
-    int skor = 0, skor1 = 0;
-    intToString(skor,p1);
-	intToString(pl1->score,t1);
-    intToString(skor1,p2);
-	intToString(pl1->score,t2);
+    char p[3][3];
+	char t[3][3];
+	
+    PLAYER* pl[3];
+	int i;
+
+	for (i = 0; i < 3; i++)
+	{
+		pl[i] = playerCreate();
+	}
+	
+	assignPlayerName(pl[0], "Sinisa");
+    assignPlayerName(pl[1], "Seka");
+	assignPlayerName(pl[2], "Bojan");
+
+	for (i = 0; i < 3; i++)
+	{
+		assignPlayerScore(pl[i], 0);
+	}
+    
+    int skor = 0;
+	int j;
+	
+	for (i = 0; i < 3; i++)
+	{
+		intToString(skor, p[i]);
+		intToString(pl[i]->score, t[i]);
+    }
     
 	//printf("%s\n", pl->name);
 	//printf("%d\n", pl1->score);
 	//showAnimation();
 
-    da = shoot(ta, h, po, pv, da);
-    result(pl, skor, p1, t1, da);
-    printTable(pl->name, p1, t1, "Bojan", "5", "17", pl1->name, p2, t2);
-
-    da = shoot(ta, h, po, pv, da);
-    result(pl1, skor1, p2, t2, da);
-    printTable(pl->name, p1, t1, "Bojan", "5", "17", pl1->name, p2, t2);
-
-    da = shoot(ta, h, po, pv, da);
-    result(pl1, skor1, p2, t2, da);
-    printTable(pl->name, p1, t1, "Bojan", "5", "17", pl1->name, p2, t2);
+	for (i = 0; i < 6; i++)
+	{
+		j = i % 3;
+		da = shoot(ta, h, po, pv, da);
+		result(pl[j], skor, p[j], t[j], da);
+		printTable(pl, p, t);
+		
+	}
+  
 	
     sdlQuit();
 

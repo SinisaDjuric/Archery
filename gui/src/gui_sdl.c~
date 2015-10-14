@@ -82,119 +82,116 @@ void showAnimation(void)
 	//SDL_FreeSurface( screen1 );
 	
 }*/
-
-void printTable(char ime1[], char point1[], char score1[],char ime2[], char point2[], char score2[],char ime3[], char point3[], char score3[])
+//,char ime2[], char point2[], char score2[],char ime3[], char point3[], char score3[])
+void printTable(PLAYER* pla[3], char point[3][3], char score[3][3]) 
 {
-	SDL_Surface* message1 = NULL;
-	SDL_Surface* message2 = NULL;
-	SDL_Surface* message3 = NULL;
-	SDL_Surface* player1 = NULL;
-	SDL_Surface* points1 = NULL;
-	SDL_Surface* total1 = NULL;
-	SDL_Surface* player2 = NULL;
-	SDL_Surface* points2 = NULL;
-	SDL_Surface* total2 = NULL;
-	SDL_Surface* player3 = NULL;
-	SDL_Surface* points3 = NULL;
-	SDL_Surface* total3 = NULL;
+	
 	TTF_Font *font = NULL; 
 	
+	SDL_Surface* message[3] = {NULL, NULL, NULL};	
+	SDL_Surface* player[3] = {NULL, NULL, NULL};
+	SDL_Surface* points[3] = {NULL, NULL, NULL};
+	SDL_Surface* total[3] = {NULL, NULL, NULL};
+
 	SDL_Color textColor = { 0, 0, 0 };
 	TTF_Init();
 	 
 	font = TTF_OpenFont( "resources/open-sans/OpenSans-Light.ttf", 28 );
 	 
-	message1 = TTF_RenderText_Solid( font, "Player", textColor );
-	message2 = TTF_RenderText_Solid( font, "Points", textColor );
-	message3 = TTF_RenderText_Solid( font, "Total", textColor );
+	message[0] = TTF_RenderText_Solid( font, "Player", textColor );
+	message[1] = TTF_RenderText_Solid( font, "Points", textColor );
+	message[2] = TTF_RenderText_Solid( font, "Total", textColor );
 
-	player1 = TTF_RenderText_Solid( font, ime1, textColor );
-	points1 = TTF_RenderText_Solid( font, point1, textColor );
-	total1 = TTF_RenderText_Solid( font, score1, textColor );
-	player2 = TTF_RenderText_Solid( font, ime2, textColor );
-	points2 = TTF_RenderText_Solid( font, point2, textColor );
-	total2 = TTF_RenderText_Solid( font, score2, textColor );
-	player3 = TTF_RenderText_Solid( font, ime3, textColor );
-	points3 = TTF_RenderText_Solid( font, point3, textColor );
-	total3 = TTF_RenderText_Solid( font, score3, textColor );
+	int im;
+	for (im = 0; im < 3; im++)
+	{
+		player[im] = TTF_RenderText_Solid( font, pla[im]->name, textColor );
+		points[im] = TTF_RenderText_Solid( font, point[im], textColor );
+		total[im] = TTF_RenderText_Solid( font, score[im], textColor );
+	}
 
-
-	SDL_Rect pl1;
-	pl1.x = 420; 
-	pl1.y = 150; 
-	SDL_Rect p1;
-	p1.x = 680; 
-	p1.y = 150; 
-	SDL_Rect to1;
-	to1.x = 800; 
-	to1.y = 150; 
-
-	SDL_Rect pl2;
-	pl2.x = 420; 
-	pl2.y = 150 + 80; 
-	SDL_Rect p2;
-	p2.x = 680; 
-	p2.y = 150 + 80; 
-	SDL_Rect to2;
-	to2.x = 800; 
-	to2.y = 150 + 80;
 	
-	SDL_Rect pl3;
-	pl3.x = 420; 
-	pl3.y = 150 + 160; 
-	SDL_Rect p3;
-	p3.x = 680; 
-	p3.y = 150 + 160; 
-	SDL_Rect to3;
-	to3.x = 800; 
-	to3.y = 150 + 160;
-
     SDL_Rect t;
     t.x = 400;
     t.y = 50;
 
-	SDL_Rect m1;
-    m1.x = 420;
-    m1.y = 70;
-	SDL_Rect m2;
-    m2.x = 650;
-    m2.y = 70;	
-	SDL_Rect m3;
-    m3.x = 780;
-   	m3.y = 70;
+	SDL_Rect pl[3];
+	SDL_Rect p[3];
+	SDL_Rect to[3];
+	SDL_Rect m[3];
 
-	SDL_BlitSurface( tabele, NULL, screen, &t );
-	SDL_BlitSurface( message1, NULL, screen, &m1 );
-	SDL_BlitSurface( message2, NULL, screen, &m2 );
-	SDL_BlitSurface( message3, NULL, screen, &m3 );
+	pl[0].x = 420; 
+	pl[0].y = 150; 
+	
+	p[0].x = 680; 
+	p[0].y = 150; 
+	
+	to[0].x = 800; 
+	to[0].y = 150; 
 
-	SDL_BlitSurface( player1, NULL, screen, &pl1 );
-	SDL_BlitSurface( points1, NULL, screen, &p1 );
-	SDL_BlitSurface( total1, NULL, screen, &to1 );
+	pl[1].x = 420; 
+	pl[1].y = 150 + 80; 
+	
+	p[1].x = 680; 
+	p[1].y = 150 + 80; 
+	
+	to[1].x = 800; 
+	to[1].y = 150 + 80;
+	
+	pl[2].x = 420; 
+	pl[2].y = 150 + 160; 
+	
+	p[2].x = 680; 
+	p[2].y = 150 + 160; 
+	
+	to[2].x = 800; 
+	to[2].y = 150 + 160;
 
-	SDL_BlitSurface( player2, NULL, screen, &pl2 );
-	SDL_BlitSurface( points2, NULL, screen, &p2 );
-	SDL_BlitSurface( total2, NULL, screen, &to2 );
+    m[0].x = 420;
+    m[0].y = 70;
+	
+    m[1].x = 650;
+    m[1].y = 70;	
+	
+    m[2].x = 780;
+   	m[2].y = 70;
 
-	SDL_BlitSurface( player3, NULL, screen, &pl3 );
-	SDL_BlitSurface( points3, NULL, screen, &p3 );
-	SDL_BlitSurface( total3, NULL, screen, &to3 );
+	SDL_BlitSurface(tabele, NULL, screen, &t);
 
-	SDL_Flip( screen );
-	SDL_Delay( 5000 );
+	SDL_BlitSurface(message[0], NULL, screen, &m[0]);
+	SDL_BlitSurface(message[1], NULL, screen, &m[1]);
+	SDL_BlitSurface(message[2], NULL, screen, &m[2]);
 
-	SDL_FreeSurface( message1 ); 
-	SDL_FreeSurface( message2 );
-	SDL_FreeSurface( message3 );
-	SDL_FreeSurface( player1 ); 
-	SDL_FreeSurface( points1 );
-	SDL_FreeSurface( total1 );
-	SDL_FreeSurface( player2 ); 
+	SDL_BlitSurface(player[0], NULL, screen, &pl[0]);
+	SDL_BlitSurface(points[0], NULL, screen, &p[0]);
+	SDL_BlitSurface(total[0], NULL, screen, &to[0]);
+ 
+	SDL_BlitSurface(player[1], NULL, screen, &pl[1]);
+	SDL_BlitSurface(points[1], NULL, screen, &p[1]);
+	SDL_BlitSurface(total[1], NULL, screen, &to[1]);
+
+	SDL_BlitSurface(player[2], NULL, screen, &pl[2]);
+	SDL_BlitSurface(points[2], NULL, screen, &p[2]);
+	SDL_BlitSurface(total[2], NULL, screen, &to[2]);
+
+	SDL_Flip(screen);
+	SDL_Delay(5000);
+	
+	
+	
+	for (im = 0; im < 3; im++)
+	{
+		SDL_FreeSurface(message[im]); 
+		SDL_FreeSurface(player[im]); 
+		SDL_FreeSurface(points[im]);
+		SDL_FreeSurface(total[im]);
+	}
+	/*SDL_FreeSurface( player2 ); 
 	SDL_FreeSurface( points2 );
 	SDL_FreeSurface( total2 );
 	SDL_FreeSurface( player3 ); 
 	SDL_FreeSurface( points3 );
-	SDL_FreeSurface( total3 );
+	SDL_FreeSurface( total3 );*/
 	
 	TTF_CloseFont( font ); 
 	

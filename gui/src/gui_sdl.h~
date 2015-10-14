@@ -4,11 +4,12 @@
 
 # include "SDL/SDL.h"
 # include "SDL/SDL_ttf.h"
+# include "../../player/src/player.h"
 
 # define SCREEN_WIDTH 1080
 # define SCREEN_HIGHT 640
 # define BPP 32
-//The images
+
     SDL_Surface* target;
 	SDL_Surface* vertical;
 	SDL_Surface* horizontal;
@@ -25,8 +26,8 @@
 
 void setAndLoad(void);
 void showAnimation(void);
-void printTable(char ime[], int x, char point[], char score[]);
-//void set_positions(SDL_Rect t,SDL_Rect h);
+//void printTable(char ime1[], char point1[], char score1[],char ime2[], char point2[], char score2[],char ime3[], char point3[], char score3[]);
+void printTable(PLAYER* pla[3], char point[3][3], char score[3][3]);
 void showStartImages(SDL_Rect t,SDL_Rect h);
 void showHit(SDL_Rect d);
 int takeX(SDL_Rect p);

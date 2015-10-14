@@ -17,6 +17,8 @@ TEST_GROUP_RUNNER(PlayerTest)
 	RUN_TEST_CASE (PlayerTest, TestIncreaseOutOfBounds)
 	RUN_TEST_CASE (PlayerTest, TestDecreaseQuality)
 	RUN_TEST_CASE (PlayerTest, TestDecreaseOutOfBounds);
+	RUN_TEST_CASE (PlayerTest, AssignedScoreInBounds);
+	RUN_TEST_CASE (PlayerTest, AssignedScoreInBounds);
 }
 
 TEST_SETUP(PlayerTest)
@@ -26,6 +28,7 @@ TEST_SETUP(PlayerTest)
 
 TEST_TEAR_DOWN(PlayerTest)
 {
+	playerDelete(player);
 }
 
 TEST(PlayerTest, TestAllocatePlayer)
@@ -57,4 +60,37 @@ TEST(PlayerTest, AssignedQualityInBounds)
 	TEST_ASSERT_TRUE (player -> quality == 2);
 }
 
+TEST(PlayerTest, TestEmptyName)
+{
+	assignPlayerName (player,"");
+	STRCMP_EQUAL("Player", player->name);
+}
+
+TEST(PlayerTest, TestIncreaseQuality)
+{
+	assignPlayerQuality (player, 1);
+	increaseQuality(player);
+	TEST_ASSERT_TRUE (player->quality == 2);
+}
+
+TEST(PlayerTest, TestIncreaseOutOfBounds)
+{
+	assignPlayerQuality (player, QUALITY_MAX);
+	increaseQuality(player);
+	TEST_ASSERT_TRUE (player->quality == QUALITY_MAX);
+}
+
+TEST(PlayerTest, TestDecreaseQuality)
+{
+	assignPlayerQuality (player, 3);
+	decreaseQuality(player);
+	TEST_ASSERT_TRUE (player->quality == 2);
+}
+
+TEST(PlayerTest, TestDecreaseOutOfBounds)
+{
+	assignPlayerQuality (player, QUALITY_MIN);
+	decreaseQuality(player);
+	TEST_ASSERT_TRUE (player->quality == QUALITY_MIN);
+}
 

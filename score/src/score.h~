@@ -20,7 +20,7 @@
 //int tot_score;
 
 int printScore(int x, int y);
-int totalScore(int score, int total;
+int totalScore(int score, int total);
 
 
 
